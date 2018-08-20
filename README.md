@@ -24,4 +24,4 @@ iptables -t nat -A zone_wan_postrouting -j FULLCONENAT
 
 Workaround for conflicting with module `nf_conntrack_netlink`
 ---
-This module uses conntrack events to register a callback function. In the same netns, only one callback method can be registered, that causes conflicts with `nf_conntrack_netlink`, which also uses conntrack events. Qualcomm Shortcut FE has introduce a patch to allow multiple callbacks to be registered. To apply, put [this patch](https://github.com/nitroshift/mvebu-fastpath/blob/master/952-net-conntrack-events-support-multiple-registrant.patch) into `target/linux/generic/hack-<kernel-version>`.
+This module uses conntrack events to register a callback function. In the same netns, only one callback method can be registered, that causes conflicts with `nf_conntrack_netlink`, which also uses conntrack events. Qualcomm Shortcut FE has introduced a patch to allow multiple callbacks to be registered. To apply, put [this patch](https://github.com/nitroshift/mvebu-fastpath/blob/master/952-net-conntrack-events-support-multiple-registrant.patch) into `target/linux/generic/hack-<kernel-version>`.

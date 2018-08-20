@@ -10,13 +10,14 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=fullconenat
 PKG_VERSION:=1.0
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/Chion82/netfilter-full-cone-nat.git
 PKG_SOURCE_VERSION:=ec14efee249ef11409827a87d6a23dd53deb5149
 
 PKG_LICENSE:=GPL-2.0
+PKG_LICENSE_FILES:=LICENSE
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -25,7 +26,7 @@ define Package/iptables-mod-fullconenat
   SECTION:=net
   CATEGORY:=Network
   TITLE:=FULLCONENAT iptables extension
-  DEPENDS:=+iptables +kmod-ipt-fullconenat
+  DEPENDS:=iptables +kmod-ipt-fullconenat
   MAINTAINER:=Chion Tang <tech@chionlab.moe>
 endef
 
@@ -39,8 +40,8 @@ define KernelPackage/ipt-fullconenat
   TITLE:=FULLCONENAT netfilter module
   DEPENDS:=+kmod-nf-ipt +kmod-nf-nat
   MAINTAINER:=Chion Tang <tech@chionlab.moe>
-  KCONFIG:=CONFIG_NF_CONNTRACK_EVENTS=y
-  FILES:= $(PKG_BUILD_DIR)/xt_FULLCONENAT.ko
+  KCONFIG:=CONFIG_NF_CONNTRACK_EVENTS=y CONFIG_NF_CONNTRACK_CHAIN_EVENTS=y
+  FILES:=$(PKG_BUILD_DIR)/xt_FULLCONENAT.ko
 endef
 
 include $(INCLUDE_DIR)/kernel-defaults.mk
