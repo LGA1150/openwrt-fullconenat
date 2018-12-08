@@ -26,7 +26,7 @@ define Package/iptables-mod-fullconenat
   SECTION:=net
   CATEGORY:=Network
   TITLE:=FULLCONENAT iptables extension
-  DEPENDS:=iptables +kmod-ipt-fullconenat
+  DEPENDS:=+iptables +kmod-ipt-fullconenat
   MAINTAINER:=Chion Tang <tech@chionlab.moe>
 endef
 
